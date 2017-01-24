@@ -1,0 +1,31 @@
+{
+  "name": "alphabet",
+  "version": "1.0.0",
+  "description": "The Alphabet game for kids",
+  "main": "index.js",
+  "dependencies": {
+    "angular": "^1.6.1",
+    "bootstrap-sass": "^3.3.7",
+    "gulp": "^3.9.1"
+  },
+  "devDependencies": {
+    "gulp-sass": "^3.1.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yuriydk/alphabet.git"
+  },
+  "keywords": [
+    "alphabet",
+    "game"
+  ],
+  "author": "uradzan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yuriydk/alphabet/issues"
+  },
+  "homepage": "https://github.com/yuriydk/alphabet#readme"
+}
