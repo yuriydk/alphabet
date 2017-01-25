@@ -24,20 +24,22 @@ angular.module("main")
 
   this.check = char => {
     if(testItem.char == char){
-      speech.say("Правильно, молодец!");
-
-      this.next();
-      return true;
+      step++;
+      speech.say("Правильно, молодец!")
+      .then(() => {
+          this.next();
+      });
+      return;
     }
     speech.say("Не правильно!");
     speech.say("Покажи букву");
-    speech.say(`[${testItem.char}]`);
-    return false;
+    speech.say(`[${testItem.char}]`, 0.5);
+    return;
   }
 
   this.next = () => {
-    if(step == quizLength - 1)
-      return false;
+    if(this.isDone())
+      return;
 
     items = [];
     var except = played.slice();
@@ -52,9 +54,12 @@ angular.module("main")
     played.push(testItem.charIndex);
     speech.say("Покажи букву");
     speech.say(`[${testItem.char}]`, 0.5);
-    return true;
+    return;
   }
 
+  this.isDone = () => {
+    return step == quizLength;
+  }
   this.getItems = () => { return items;}
 }]);
 })();

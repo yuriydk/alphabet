@@ -2,12 +2,12 @@
   "use strict"
 
 angular.module("main")
-.service("speech",["$timeout", function ($timeout) {
+.service("speech",["$timeout", "$q", function ($timeout, $q) {
   var sayInternal = (text, rate) => {
     var utter = new SpeechSynthesisUtterance(text);
     utter.lang = "ru-RU";
     utter.rate = rate;
-    var p = new Promise((resolve, reject)=>{
+    var p = $q((resolve, reject)=>{
       utter.onend = () => {
         resolve();
       };

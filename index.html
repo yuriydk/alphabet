@@ -34,37 +34,19 @@
       }*/
     </style>
   </head>
-  <body ng-app="main">
-    <nav class="navbar navbar-default" role="navigation">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#"></a>
+  <body ng-app="main" ng-controller="TestController as ctrl">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Alphabet</a>
+                <button class="btn btn-default  navbar-btn" ng-click="ctrl.startQuiz()" ng-show="ctrl.quizIsDone()">Еще раз</button>
+            </div>
         </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="navbar">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Alphabet</a></li>
-            <li><a href="#"></a></li>
-          </ul>
-
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"></a></li>
-
-          </ul>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
     </nav>
-    <div class="container" ng-controller="TestController as ctrl">
+    <div class="container" >
       <div class="row">
         <div class="col-xs-12 col-md-6 col-md-offset-3">
-          <div class="row">
+          <div class="row" ng-hide="ctrl.quizIsDone()">
             <div style="" ng-repeat="item in ctrl.getQuizItems()" class="col-xs-4 col-md- test-option" ng-click="ctrl.checkOption(item.char)">
               <div class="centered-content">{{item.char}}</div>
             </div>
