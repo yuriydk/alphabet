@@ -45951,13 +45951,13 @@ __WEBPACK_IMPORTED_MODULE_0_angular___default.a.module("main", ["ui.router", "ui
                 url: "/stat",
                 controller: "StatisticController",
                 controllerAs: "ctrl",
-                templateUrl: "./templates/statistic.html"
+                templateUrl: "/alphabet/templates/statistic.html"
             }).state({
                 name: "settings",
                 url: "/settings",
                 controller: "SettingsController",
                 controllerAs: "ctrl",
-                templateUrl: "./templates/settings.html"
+                templateUrl: "/alphabet/templates/settings.html"
             })
         }
     ])
