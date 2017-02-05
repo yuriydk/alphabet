@@ -4895,7 +4895,7 @@ class QuizService {
         this.$inject = ["speech", "math"];
         this.math = math;
         this.speech = speech;
-        this.quizes = [];
+        this.statistics = [];
     }
 
     getAlphabet(lang) {
@@ -4915,19 +4915,18 @@ class QuizService {
     };
 
     getStatistics() {
-        return this.quizes.map((q, i) => {
-            return {
-                quizNumber: i + 1,
-                statistic: q.statistic
-            };
-        })
+        return this.statistics;
     }
 
     start(options) {
         const {lang} = options;
         this.speech.setLang(lang);
         let quiz = new Quiz(options, this.getAlphabet(lang), this.speech, this.math);
-        this.quizes.push(quiz);
+        this.statistics.push({
+            quizNumber: this.statistics.length + 1,
+            statistic: quiz.statistic,
+            lang: lang
+        });
         return quiz;
     }
 }
@@ -5018,10 +5017,16 @@ class StatisticController {
 
 "use strict";
 class TestController {
-    constructor($scope, imageSearch, speech, quiz, lang) {
-        this.$inject = ["$scope", "imageSearch", "speech", "quiz", "lang"];
+    constructor($scope, imageSearch, speech, quiz, lang, translation) {
+        this.$inject = ["$scope", "imageSearch", "speech", "quiz", "lang", "translation"];
         this.quizService = quiz;
-        this.startQuiz({size: 6, length: 10, lang});
+        this.translation = translation;
+        this.lang = lang;
+        this.startQuiz();
+    }
+
+    translate(text) {
+        return this.translation.translate(text, this.lang);
     }
 
     getQuizItems() {
@@ -5029,7 +5034,11 @@ class TestController {
     }
 
     startQuiz(options) {
-        this.currentQuiz = this.quizService.start(options);
+        this.currentQuiz = this.quizService.start({
+            // size: 2,
+            // length: 1,
+            lang: this.lang
+        });
     }
 
     quizIsDone() {
@@ -5060,7 +5069,8 @@ class TranslationService {
         this.enToRus = {
             "Wrong!": "Неправильно!",
             "Show the letter": "Покажи букву",
-            "You are right, well done!": "Правильно, молодец!"
+            "You are right, well done!": "Правильно, молодец!",
+            "Play again": "Играть еще раз"
         }
     }
 
