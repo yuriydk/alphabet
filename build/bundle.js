@@ -38100,7 +38100,7 @@ __WEBPACK_IMPORTED_MODULE_0_angular___default.a
                 url: "/quiz/{lang}",
                 controller: "TestController",
                 controllerAs: "ctrl",
-                templateUrl: "../templates/quiz.html",
+                templateUrl: "/alphabet/templates/quiz.html",
                 resolve: {
                     lang: ($stateParams) => {
                         return $stateParams.lang.toLowerCase() == "ru" ? "ru-RU" : "en";
@@ -38112,7 +38112,7 @@ __WEBPACK_IMPORTED_MODULE_0_angular___default.a
                 url: "/stat",
                 controller: "StatisticController",
                 controllerAs: "ctrl",
-                templateUrl: "../templates/statistic.html"
+                templateUrl: "/alphabet/templates/statistic.html"
             })
     }])
     .service("math", __WEBPACK_IMPORTED_MODULE_3__mathService__["a" /* default */])
