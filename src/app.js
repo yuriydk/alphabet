@@ -23,7 +23,7 @@ angular.module("main", ["ui.router", "ui.bootstrap"]).config([
                 url: "/quiz/{lang}/{type}",
                 controller: "TestController",
                 controllerAs: "ctrl",
-                templateUrl: "./templates/quiz.html",
+                templateUrl: "/alphabet/templates/quiz.html",
                 resolve: {
                     quizParams: $stateParams => ({
                         lang: $stateParams.lang.toLowerCase() == "ru" ? "ru-RU" : $stateParams.lang.toLowerCase(),
