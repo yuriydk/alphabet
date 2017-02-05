@@ -1,0 +1,12 @@
+<div class="container" >
+  <div class="row">
+    <div class="col-xs-12 col-md-6 col-md-offset-3">
+      <div class="row" ng-hide="ctrl.quizIsDone()">
+        <div style="" ng-repeat="item in ctrl.getQuizItems()" ng-class="{'bg-danger': !item.correct && item.checked, 'bg-success': item.correct,}" class="col-xs-4 col-md- test-option" ng-click="ctrl.checkOption(item)">
+          <div class="centered-content">{{item.char}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<button class="btn btn-default  navbar-btn" ng-click="ctrl.startQuiz()" ng-show="ctrl.quizIsDone()">Еще раз</button>

@@ -1,25 +1,29 @@
 export default class TestController {
-    constructor($scope, imageSearch, speech, quiz) {
-        this.$inject = ["$scope", "imageSearch", "speech", "quiz"];
-        this.quiz = quiz;
-        this.startQuiz();
+    constructor($scope, imageSearch, speech, quiz, lang) {
+        this.$inject = ["$scope", "imageSearch", "speech", "quiz", "lang"];
+        this.quizService = quiz;
+        this.startQuiz({size: 6, length: 10, lang});
     }
 
     getQuizItems() {
-        return this.quiz.getItems();
+        return this.currentQuiz.getItems();
     }
 
-    startQuiz() {
-        this.quizSize = 6;
-        this.quizLength = 10;
-        this.quiz.start({size: this.quizSize, length: this.quizLength});
+    startQuiz(options) {
+        this.currentQuiz = this.quizService.start(options);
     }
 
     quizIsDone() {
-        return this.quiz.isDone();
+        return this.currentQuiz.isDone();
     }
 
-    checkOption(char) {
-        this.quiz.check(char);
+    checkOption(quizItem) {
+        if (this.isSpeaking)
+            return;
+        this.isSpeaking = true;
+        quizItem.checked = true;
+        this.currentQuiz.check(quizItem.char).then(() => {
+            this.isSpeaking = false;
+        });
     }
 }

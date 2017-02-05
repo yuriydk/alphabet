@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <base href="/">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -34,27 +35,20 @@
       }*/
     </style>
   </head>
-  <body ng-app="main" ng-controller="TestController as ctrl">
+  <body ng-app="main">
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">Alphabet</a>
-                <button class="btn btn-default  navbar-btn" ng-click="ctrl.startQuiz()" ng-show="ctrl.quizIsDone()">Еще раз</button>
             </div>
+            <ul class="nav navbar-nav">
+              <li ui-sref-active="active"><a ui-sref="quiz({lang: 'ru'})"  href="/quiz/ru">Quiz RUS</a></li>
+              <li ui-sref-active="active"><a ui-sref="quiz({lang: 'en'})"  href="/quiz/en">Quiz EN</a></li>
+              <li ui-sref-active="active"><a  ui-sref="statistic" href="/stat">Statistic</a></li>
+            </ul>
         </div>
     </nav>
-    <div class="container" >
-      <div class="row">
-        <div class="col-xs-12 col-md-6 col-md-offset-3">
-          <div class="row" ng-hide="ctrl.quizIsDone()">
-            <div style="" ng-repeat="item in ctrl.getQuizItems()" class="col-xs-4 col-md- test-option" ng-click="ctrl.checkOption(item.char)">
-              <div class="centered-content">{{item.char}}</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
+    <ui-view></ui-view>
     <!-- <script src="https://cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
     <script src="/build/bundle.js" charset="utf-8"></script>
