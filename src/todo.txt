@@ -1,0 +1,6 @@
+-Introduce ES6 modules
+-Process with babel and bundle with WebPack
+-Enhance UI
+-Place CSS in SCSS files. Compile SCSS with WebPack (or with Gulp for start)
+-Add animation to make game attractive for kids:)
+-And add sounds:)
