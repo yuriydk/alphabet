@@ -11,7 +11,7 @@ import TranslationService from "./translationService";
 angular
     .module("main", ["ui.router"])
     .config(["$locationProvider", $locationProvider => {
-        $locationProvider.html5Mode(true);
+        // $locationProvider.html5Mode(true);
     }])
     .config(["$stateProvider", $stateProvider => {
         $stateProvider
