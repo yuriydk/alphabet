@@ -1,8 +1,14 @@
 export default class TestController {
-    constructor($scope, imageSearch, speech, quiz, lang) {
-        this.$inject = ["$scope", "imageSearch", "speech", "quiz", "lang"];
+    constructor($scope, imageSearch, speech, quiz, lang, translation) {
+        this.$inject = ["$scope", "imageSearch", "speech", "quiz", "lang", "translation"];
         this.quizService = quiz;
-        this.startQuiz({size: 6, length: 10, lang});
+        this.translation = translation;
+        this.lang = lang;
+        this.startQuiz();
+    }
+
+    translate(text) {
+        return this.translation.translate(text, this.lang);
     }
 
     getQuizItems() {
@@ -10,7 +16,11 @@ export default class TestController {
     }
 
     startQuiz(options) {
-        this.currentQuiz = this.quizService.start(options);
+        this.currentQuiz = this.quizService.start({
+            // size: 2,
+            // length: 1,
+            lang: this.lang
+        });
     }
 
     quizIsDone() {

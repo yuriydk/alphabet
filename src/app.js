@@ -8,14 +8,13 @@ import TestController from "./testController";
 import StatisticController from "./statisticController";
 import TranslationService from "./translationService";
 
-angular
-    .module("main", ["ui.router"])
-    .config(["$locationProvider", $locationProvider => {
-        $locationProvider.html5Mode(true);
-    }])
-    .config(["$stateProvider", $stateProvider => {
-        $stateProvider
-            .state({
+angular.module("main", ["ui.router"]).config([
+        "$locationProvider", $locationProvider => {
+            // $locationProvider.html5Mode(true);
+        }
+    ]).config([
+        "$stateProvider", $stateProvider => {
+            $stateProvider.state({
                 name: "quiz",
                 url: "/quiz/{lang}",
                 controller: "TestController",
@@ -23,18 +22,20 @@ angular
                 templateUrl: "./templates/quiz.html",
                 resolve: {
                     lang: ($stateParams) => {
-                        return $stateParams.lang.toLowerCase() == "ru" ? "ru-RU" : "en";
+                        return $stateParams.lang.toLowerCase() == "ru" ?
+                            "ru-RU" :
+                            "en";
                     }
                 }
-            })
-            .state({
+            }).state({
                 name: "statistic",
                 url: "/stat",
                 controller: "StatisticController",
                 controllerAs: "ctrl",
                 templateUrl: "./templates/statistic.html"
             })
-    }])
+        }
+    ])
     .service("math", MathService)
     .service("imageSearch", ImageSearchService)
     .service("speech", SpeechService)

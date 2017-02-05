@@ -2,6 +2,7 @@
   <thead>
     <tr>
       <th>#</th>
+      <th>language</th>
       <th>score</th>
       <th>errors</th>
     </tr>
@@ -9,6 +10,7 @@
   <tbody>
     <tr ng-repeat="stat in ctrl.statistics">
       <td>{{stat.quizNumber}}</td>
+      <td>{{stat.lang}}</td>
       <td>{{stat.statistic.correct.length}} of {{stat.statistic.correct.length + stat.statistic.wrong.length}}</td>
       <td>
         <span ng-repeat="char in stat.statistic.wrong">{{char}} </span>
