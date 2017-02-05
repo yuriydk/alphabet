@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "/build/";
+/******/ 	__webpack_require__.p = "/alphabet/build/";
 
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = 10);
@@ -38091,7 +38091,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 __WEBPACK_IMPORTED_MODULE_0_angular___default.a
     .module("main", ["ui.router"])
     .config(["$locationProvider", $locationProvider => {
-        $locationProvider.html5Mode(true);
+        // $locationProvider.html5Mode(true);
     }])
     .config(["$stateProvider", $stateProvider => {
         $stateProvider
@@ -38100,7 +38100,7 @@ __WEBPACK_IMPORTED_MODULE_0_angular___default.a
                 url: "/quiz/{lang}",
                 controller: "TestController",
                 controllerAs: "ctrl",
-                templateUrl: "./templates/quiz.html",
+                templateUrl: "../templates/quiz.html",
                 resolve: {
                     lang: ($stateParams) => {
                         return $stateParams.lang.toLowerCase() == "ru" ? "ru-RU" : "en";
@@ -38112,7 +38112,7 @@ __WEBPACK_IMPORTED_MODULE_0_angular___default.a
                 url: "/stat",
                 controller: "StatisticController",
                 controllerAs: "ctrl",
-                templateUrl: "./templates/statistic.html"
+                templateUrl: "../templates/statistic.html"
             })
     }])
     .service("math", __WEBPACK_IMPORTED_MODULE_3__mathService__["a" /* default */])

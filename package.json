@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "The Alphabet game for kids",
   "main": "index.js",
+  "homepage": "https://yuriydk.github.io/alphabet",
   "dependencies": {
     "angular": "^1.6.1",
     "angular-ui-router": "^0.4.2",
