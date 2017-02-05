@@ -20,7 +20,7 @@ angular
                 url: "/quiz/{lang}",
                 controller: "TestController",
                 controllerAs: "ctrl",
-                templateUrl: "../templates/quiz.html",
+                templateUrl: "/alphabet/templates/quiz.html",
                 resolve: {
                     lang: ($stateParams) => {
                         return $stateParams.lang.toLowerCase() == "ru" ? "ru-RU" : "en";
@@ -32,7 +32,7 @@ angular
                 url: "/stat",
                 controller: "StatisticController",
                 controllerAs: "ctrl",
-                templateUrl: "../templates/statistic.html"
+                templateUrl: "/alphabet/templates/statistic.html"
             })
     }])
     .service("math", MathService)
