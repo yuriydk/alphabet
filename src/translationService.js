@@ -3,7 +3,8 @@ export default class TranslationService {
         this.enToRus = {
             "Wrong!": "Неправильно!",
             "Show the letter": "Покажи букву",
-            "You are right, well done!": "Правильно, молодец!"
+            "You are right, well done!": "Правильно, молодец!",
+            "Play again": "Играть еще раз"
         }
     }
 

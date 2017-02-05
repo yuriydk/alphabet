@@ -71,7 +71,7 @@ export default class QuizService {
         this.$inject = ["speech", "math"];
         this.math = math;
         this.speech = speech;
-        this.quizes = [];
+        this.statistics = [];
     }
 
     getAlphabet(lang) {
@@ -91,19 +91,18 @@ export default class QuizService {
     };
 
     getStatistics() {
-        return this.quizes.map((q, i) => {
-            return {
-                quizNumber: i + 1,
-                statistic: q.statistic
-            };
-        })
+        return this.statistics;
     }
 
     start(options) {
         const {lang} = options;
         this.speech.setLang(lang);
         let quiz = new Quiz(options, this.getAlphabet(lang), this.speech, this.math);
-        this.quizes.push(quiz);
+        this.statistics.push({
+            quizNumber: this.statistics.length + 1,
+            statistic: quiz.statistic,
+            lang: lang
+        });
         return quiz;
     }
 }
