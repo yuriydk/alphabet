@@ -1,9 +1,10 @@
 export default class TestController {
-    constructor($scope, imageSearch, speech, quiz, lang, translation) {
-        this.$inject = ["$scope", "imageSearch", "speech", "quiz", "lang", "translation"];
+    constructor($scope, imageSearch, speech, quiz, quizParams, translation, quizSettings) {
+        this.$inject = ["$scope", "imageSearch", "speech", "quiz", "quizParams", "translation", "quizSettings"];
         this.quizService = quiz;
         this.translation = translation;
-        this.lang = lang;
+        this.quizParams = quizParams;
+        this.quizSettings = quizSettings.getSettings();
         this.startQuiz();
     }
 
@@ -19,7 +20,11 @@ export default class TestController {
         this.currentQuiz = this.quizService.start({
             // size: 2,
             // length: 1,
-            lang: this.lang
+            size: this.quizSettings.quizCells,
+            length: this.quizSettings.quizLength,
+            maxNumber: this.quizSettings.maxNumber,
+            lang: this.quizParams.lang,
+            type: this.quizParams.type
         });
     }
 

@@ -1,5 +1,6 @@
 import angular from "angular";
-import 'angular-ui-router';
+import "angular-ui-router";
+import "angular-ui-bootstrap"
 import ImageSearchService from "./imageSearchService";
 import MathService from "./mathService";
 import SpeechService from "./speechService";
@@ -7,8 +8,11 @@ import QuizService from "./quizService";
 import TestController from "./testController";
 import StatisticController from "./statisticController";
 import TranslationService from "./translationService";
+import SpeakerService from "./SpeakerService";
+import QuizSettingsService from "./quizSettingsService";
+import SettingsController from "./settingsController";
 
-angular.module("main", ["ui.router"]).config([
+angular.module("main", ["ui.router", "ui.bootstrap"]).config([
         "$locationProvider", $locationProvider => {
             // $locationProvider.html5Mode(true);
         }
@@ -16,16 +20,15 @@ angular.module("main", ["ui.router"]).config([
         "$stateProvider", $stateProvider => {
             $stateProvider.state({
                 name: "quiz",
-                url: "/quiz/{lang}",
+                url: "/quiz/{lang}/{type}",
                 controller: "TestController",
                 controllerAs: "ctrl",
                 templateUrl: "./templates/quiz.html",
                 resolve: {
-                    lang: ($stateParams) => {
-                        return $stateParams.lang.toLowerCase() == "ru" ?
-                            "ru-RU" :
-                            "en";
-                    }
+                    quizParams: $stateParams => ({
+                        lang: $stateParams.lang.toLowerCase() == "ru" ? "ru-RU" : $stateParams.lang.toLowerCase(),
+                        type: $stateParams.type.toLowerCase()
+                    })
                 }
             }).state({
                 name: "statistic",
@@ -33,6 +36,12 @@ angular.module("main", ["ui.router"]).config([
                 controller: "StatisticController",
                 controllerAs: "ctrl",
                 templateUrl: "./templates/statistic.html"
+            }).state({
+                name: "settings",
+                url: "/settings",
+                controller: "SettingsController",
+                controllerAs: "ctrl",
+                templateUrl: "./templates/settings.html"
             })
         }
     ])
@@ -41,5 +50,14 @@ angular.module("main", ["ui.router"]).config([
     .service("speech", SpeechService)
     .service("quiz", QuizService)
     .service("translation", TranslationService)
+    .service("speaker", SpeakerService)
+    .service("quizSettings", QuizSettingsService)
     .controller("TestController", TestController)
-    .controller("StatisticController", StatisticController);
+    .controller("StatisticController", StatisticController)
+    .controller("SettingsController", SettingsController)
+    .controller("NavigationController", [function() {
+        this.collapse = () => {
+            this.isNavCollapsed = true;
+        };
+        this.collapse();
+    }]);
