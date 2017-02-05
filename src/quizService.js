@@ -78,7 +78,7 @@ export default class QuizService {
         this.statistics = [];
     }
 
-    getAlphabet({lang, type}) {
+    getAlphabet({lang, type, maxNumber}) {
         var alphabet = [];
         if (lang == "en" && type == "alphabet") {
             for (var i = 0; i < 26; i++) {
@@ -90,8 +90,8 @@ export default class QuizService {
             }
             alphabet.splice(6, 0, "Ё");
         } else if (type == "numbers") {
-            for (var i = 0; i < 10; i++) {
-                alphabet.push(`${i + 1}`);
+            for (var i = 1; i <= maxNumber; i++) {
+                alphabet.push(`${i}`);
             }
         }
 

@@ -2,7 +2,7 @@ export default class QuizSettingsService {
     //todo save in localstorage
     constructor() {
         this.settings = {
-            maxNumber: 10,
+            maxNumber: 20,
             quizLength: 10,
             quizCells: 6
         }
